@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<vxml:Document xmlns:vxml="http://www.vms-solutions.com/mozart/vxml/2012/1" xmlns:def="definitions" xmlns:ref="references" ContentType="femap"  ContentKey="Main" xmlns="Mozart.Task.Execution.Design, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-  <vxml:Content> 
-  </vxml:Content>
-</vxml:Document>
