@@ -1,0 +1,806 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mozart.RuleFlow</name>
+    </assembly>
+    <members>
+        <member name="T:Mozart.RuleFlow.IRulePreset">
+            <summary>
+            사전정의된 Rule 의 리스트입니다. 
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IRulePreset.Name">
+            <summary>
+            RulePreset 명입니다. 
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IRulePreset.Rules">
+            <summary>
+            Preset 을 구성하는 Rule 리스트입니다.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IRulePreset.Properties">
+            <summary>
+            RulePreset 의 속성 Set 입니다.
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IRuleManager.AddRule(Mozart.RuleFlow.IRule)">
+            <summary>
+            Rule 등록
+            </summary>
+            <param name="rule"></param>
+        </member>
+        <member name="M:Mozart.RuleFlow.IRuleManager.GetRule(System.String)">
+            <summary>
+            주어진 이름의 Rule return
+            </summary>
+            <param name="ruleName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IRuleManager.RemoveRule(System.String)">
+            <summary>
+            주어진 이름의 Rule 제거
+            </summary>
+            <param name="ruleName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IRuleManager.AddPreset(Mozart.RuleFlow.IRulePreset)">
+            <summary>
+            Preset 등록
+            </summary>
+            <param name="preset"></param>
+        </member>
+        <member name="M:Mozart.RuleFlow.IRuleManager.GetPreset(System.String)">
+            <summary>
+            주어진 이름의 Preset return
+            </summary>
+            <param name="presetName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IRuleManager.RemovePreset(System.String)">
+            <summary>
+            주어진 이름의 Preset 제거
+            </summary>
+            <param name="presetName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IRuleManager.Import(System.Reflection.Assembly)">
+            <summary>
+            Rule 등록
+            </summary>
+            <param name="assembly"></param>
+        </member>
+        <member name="P:Mozart.RuleFlow.IRuleManager.Rules">
+            <summary>
+            등록된 Rule들
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IRuleManager.Presets">
+            <summary>
+            등록된 RulePreset들
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowBuilder.Build">
+            <summary>
+            Flow Build
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowBuilder.SetName(System.String)">
+            <summary>
+            Flow의 이름 설정
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowBuilder.SetTag(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowBuilder.SetFirstStageSelector(Mozart.RuleFlow.IStageSelector)">
+            <summary>
+            Flow의 FirstStageSelector 설정
+            </summary>
+            <param name="firstSelector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowBuilder.SetChildStageSelector(Mozart.RuleFlow.IStageSelector)">
+            <summary>
+            Flow의 ChildStageSelector 설정
+            </summary>
+            <param name="childStageSelector"></param>
+            <returns></returns>  
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowBuilder.SetNextStageSelector(Mozart.RuleFlow.IStageSelector)">
+            <summary>
+            Flow의 NextStageSelector 설정
+            </summary>
+            <param name="nextStageSelector"></param>
+            <returns></returns> 
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowBuilder.SetTargetComparer(System.Collections.Generic.IComparer{Mozart.RuleFlow.IStageTargetGroup})">
+            <summary>
+            Flow의 TargetComparer 설정
+            </summary>
+            <param name="targetComparer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowBuilder.SetTargetMerger(Mozart.RuleFlow.IStageTargetGroupMerger)">
+            <summary>
+            Flow의 TargetMerger 설정
+            </summary>
+            <param name="targetMerger"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowBuilder.SetTargetMergerInStage(Mozart.RuleFlow.IStageTargetGroupMerger)">
+            <summary>
+            Flow의 TargetMergerInStage 설정
+            </summary>
+            <param name="targetMergerInStage"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlowBuilder.Engine">
+            <summary>
+            Flow가 속한 Engine
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlow.SelectFirst(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            주어진 TargetGroup에 적합한 Stage를 선택해서 TargetGroup 내의 Target들의 CurrentStage로 설정
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlow.GetStage(System.String)">
+            <summary>
+            주어진 StageID에 해당하는 Stage를 찾아 return
+            </summary>
+            <param name="stageID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlow.OnDone">
+            <summary>
+            Flow를 실행 후 메모리를 반환합니다.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlow.Engine">
+            <summary>
+            Flow가 속한 Engine
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlow.Name">
+            <summary>
+            Flow의 이름
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlow.FlowKey">
+            <summary>
+            Flow의 Key
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlow.Tag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlow.Level">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlow.FirstList">
+            <summary>
+            StageRoute 중 가장 앞의 Stage와 해당 Stage가 선택되기 위한 조건
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlow.AllStageList">
+            <summary>
+            Stage에 속한 모든 Stage
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlow.FirstSelector">
+            <summary>
+            FirstList의 Stage 중 주어진 TargetGroup에 적합한 Stage 선택 기준
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlow.TargetComparer">
+            <summary>
+            Flow 내에서 StageTargetGroup Soring 기준
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlow.TargetMerger">
+            <summary>
+            Flow 내에서 StageTargetGroup Merge 기준
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlow.TargetMergerInStage">
+            <summary>
+            한 Stage가 실행될 때마다 Flow 내에서 StageTargetGrop Merge/Split 기준
+            </summary>
+        </member>
+        <member name="T:Mozart.RuleFlow.IInput">
+            <summary>
+            Ruleflow 엔진에서 flow 실행시 Input 으로 사용될 데이터에 대한 Interface 입니다.
+            </summary>
+        </member>
+        <member name="T:Mozart.RuleFlow.IRule">
+            <summary>
+            Stage에서 실행하는 Rule에 대한 Interface입니다.
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IRule.Execute(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            Rule 을 실행합니다. 
+            </summary>
+            <param name="target">Rule 실행의 입력 데이터 입니다.</param>
+            <returns>Rule 실행으로 업데이트 된 입력 데이터입니다.</returns>
+        </member>
+        <member name="P:Mozart.RuleFlow.IRule.Name">
+            <summary>
+            Rule 이름입니다.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IRule.Description">
+            <summary>
+            Rule 설명입니다.
+            </summary>
+        </member>
+        <member name="T:Mozart.RuleFlow.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_COMMON">
+            <summary>
+              Looks up a localized string similar to Common.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_PEG_BUILD">
+            <summary>
+              Looks up a localized string similar to Pegging-Build.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_PEG_RUN">
+            <summary>
+              Looks up a localized string similar to Pegging-Run.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_PERSIST_INPUT">
+            <summary>
+              Looks up a localized string similar to Persist-Input.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_PERSIST_OUTPUT">
+            <summary>
+              Looks up a localized string similar to Persist-Output.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_SIM_BOP">
+            <summary>
+              Looks up a localized string similar to SIM-Bop.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_SIM_BUCKETING">
+            <summary>
+              Looks up a localized string similar to SIM-Bucketing.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_SIM_DISPATCHING">
+            <summary>
+              Looks up a localized string similar to SIM-Dispatching.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_SIM_EQUIPMENT">
+            <summary>
+              Looks up a localized string similar to SIM-Equipment.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_SIM_FACTORY">
+            <summary>
+              Looks up a localized string similar to SIM-Factory.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_SIM_GENERAL">
+            <summary>
+              Looks up a localized string similar to SIM-General.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_SIM_INIT">
+            <summary>
+              Looks up a localized string similar to SIM-Init.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_SIM_JOBCHANGEAGENT">
+            <summary>
+              Looks up a localized string similar to SIM-JobChangeAgent.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_SIM_SECONDRESOURCE">
+            <summary>
+              Looks up a localized string similar to SIM-SecondResource.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.CAT_SIM_TRANSFER">
+            <summary>
+              Looks up a localized string similar to SIM-Transfer.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.EXCEPTION_ARG_CANNOT_BE_FOUND">
+            <summary>
+              Looks up a localized string similar to The element cannot be found..
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.EXCEPTION_ARG_NULL">
+            <summary>
+              Looks up a localized string similar to {0}: Invalid parameter &apos;{1}&apos; passed to method: null.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.EXCEPTION_FLOW_IS_NOT_SPECIFIED">
+            <summary>
+              Looks up a localized string similar to Flow name is now specified..
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.EXCEPTION_NO_STAGE">
+            <summary>
+              Looks up a localized string similar to {0}.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Strings.EXCEPTION_STAGE_ALREADY_BUILDING">
+            <summary>
+              Looks up a localized string similar to {0}.
+            </summary>
+        </member>
+        <member name="T:Mozart.RuleFlow.IStageTargetGroup">
+            <summary>
+            Target들의 Group
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageTargetGroup.AddTarget(Mozart.RuleFlow.IStageTarget)">
+            <summary>
+            Group에 Target 추가
+            </summary>
+            <param name="target"></param>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageTargetGroup.AddTargets(System.Collections.Generic.IEnumerable{Mozart.RuleFlow.IStageTarget})">
+            <summary>
+            Group에 Target 추가
+            </summary>
+            <param name="targets"></param>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStageTargetGroup.TargetList">
+            <summary>
+            Group에 속한 Target들의 List
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStageTargetGroup.FirstTarget">
+            <summary>
+            TargetList 중 우선순위가 가장 높은 Target
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStageTargetGroup.CurrentStage">
+            <summary>
+            Target들의 현재 Stage
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStageTargetGroup.Tag">
+            <summary>
+            Tag
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageBuilder.SetStageID(System.String)">
+            <summary>
+            Stage의 StageID 설정
+            </summary>
+            <param name="stageID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageBuilder.SetTag(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="tag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageBuilder.AddRule(Mozart.RuleFlow.IRule)">
+            <summary>
+            Stage에 Rule 추가
+            </summary>
+            <param name="rule"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageBuilder.AddRules(Mozart.RuleFlow.IRulePreset)">
+            <summary>
+            Add Ruleset to this stage
+            </summary>
+            <param name="preset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageBuilder.AddRules(System.String)">
+            <summary>
+            Add Ruleset to this stage
+            </summary>
+            <param name="preset"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageBuilder.SetChildSelector(Mozart.RuleFlow.IStageSelector)">
+            <summary>
+            ChildStage 선택 기준
+            </summary>
+            <param name="selector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageBuilder.SetNextSelector(Mozart.RuleFlow.IStageSelector)">
+            <summary>
+            NextStage 선택 기준
+            </summary>
+            <param name="selector"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageBuilder.SetAvailableToMerge(System.Boolean)">
+            <summary>
+            현 Stage의 모든 StageTargetGroup을 merge할지 여부
+            </summary>
+            <param name="available"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageBuilder.AddProperty(System.Object,System.Object)">
+            <summary>
+            Property 추가
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageBuilder.SetState(System.String)">
+            <summary>
+            State 설정
+            </summary>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageBuilder.Build">
+            <summary>
+            Stage Build
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Mozart.RuleFlow.IStage">
+            <summary>
+            Ruleflow engine 에서 
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStage.Execute(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            Stage 실행
+            if 1. Child Stage가 존재할 경우, SelectChild 실행
+            else 2. Rule List가 존재할 경우 Rule 실행
+                 3. if Rule 실행 결과 TargetGroup의 다음 Stage가 타 Flow에 속한 경우, JumpToOtherFlow 실행
+                 4. else if Next Stage가 존재할 경우, SelectNext 실행
+                 5. else if Parent Stage가 존재할 경우, SelectNextOrParent
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStage.ExecuteRule(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            Rule 실행
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStage.SelectChild(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            TargetGroup의 CurrentStage를 Child Stage로 설정
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStage.SelectNext(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            TargetGroup의 CurrentStage를 Next Stage로 설정
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStage.SelectNextOrParent(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            Parent Stage가 존재할 경우 
+            1. TargetGroup의 CurrentStage를 Parent Stage의 Next Stage로 설정
+            2. Parent Stage의 Next Stage가 존재하지 않는 경우 TargetGroup의 CurrentStage를 Parent Stage의 Parent Stage의 Next Stage로 설정
+            3. Parent Stage가 존재하지 않거나 Parent Stage의 Next Stage가 존재할 때까지 2 반복
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStage.StageID">
+            <summary>
+            Stage ID
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStage.ChildList">
+            <summary>
+            Stage가 속한 Flow의 Depth
+            </summary>
+            <summary>
+            Child Stage와 해당 Stage 선택 조건
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStage.NextList">
+            <summary>
+            Next Stage와 해당 Stage 선택 조건
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStage.RuleList">
+            <summary>
+            실행해야할 Rule들의 List
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStage.Parent">
+            <summary>
+            Parent Stage
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStage.Flow">
+            <summary>
+            Stage가 속한 Flow
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStage.ChildSelector">
+            <summary>
+            Child Stage를 선택하기 위한 기준
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStage.NextSelector">
+            <summary>
+            Next Stage를 선택하기 위한 기준
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStage.Properties">
+            <summary>
+            Stage의 Property
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStage.State">
+            <summary>
+            Stage의 상태
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.Stage.Execute(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            Stage 를 실행합니다. Stage의 Rule 을 실행하고, 입력 Target 에 Next Stage 정보를
+            설정합니다.
+            </summary>
+            <param name="target">입력 Target 객체입니다.</param>
+            <returns>Rule실행 결과가 반영된 StageTargetGroup 객체 리스트입니다.</returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.Stage.ExecuteRule(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            Stage 실행시 Stage 의 RuleList 에 포함된 Rule을 순차적으로 실행됩니다.
+            </summary>
+            <param name="target">Rule 실행 대상이 되는 입력 Target 객체입니다.</param>
+            <returns>Rule 실행 결과를 반영한 Target 객체입니다.</returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.Stage.SelectChild(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            Stage 의 Child Stage 찾아 target 의 현재 Stage 로 설정하고 반환합니다.
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.Stage.SelectNext(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            다음 실행 대상이 되는 StageTargetGroup 리스트를 반환합니다.
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.Stage.SelectNextOrParent(Mozart.RuleFlow.IStageTargetGroup)">
+            <summary>
+            
+            </summary>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mozart.RuleFlow.Stage.Engine">
+            <summary>
+            Ruleflow engine 객채입니다.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Stage.Level">
+            <summary>
+            Stage 의 실행 우선순위입니다. 
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Stage.StageID">
+            <summary>
+            Stage ID 입니다. 
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.Stage.State">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowExecuter.Execute(Mozart.RuleFlow.IFlow,System.Collections.Generic.IList{Mozart.RuleFlow.IStageTargetGroup})">
+            <summary>
+            Flow 실행
+            1. Flow의 FirstStageSelector로 주어진 TargetGroup들에 적합한 Stage를 찾아 CurrentStage로 설정
+            2. TargetGroup을 ScheduleList에 추가
+            3. ScheduleList를 Sorting
+            4. ScheduleList에서 첫 번째 TargetGroup을 가져오기
+            5. TargetGroup의 CurrentStage 실행
+            6. 실행 결과로 return된 TargetGroup을 ScheduleList에 추가
+            7. ScheduleList에 TargetGroup이 존재하지 않을 때까지 4~6 반복
+            </summary>
+            <param name="flow"></param>
+            <param name="targetList"></param>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlowExecuter.InputList">
+            <summary>
+            초기 TargetGroup들의 List
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlowExecuter.ScheduleList">
+            <summary>
+            처리해야할 잔여 TargetGroup들의 List
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageSelector.Select(Mozart.RuleFlow.IStageTargetGroup,System.Collections.Generic.IDictionary{System.String,Mozart.RuleFlow.ITransition})">
+            <summary>
+            주어진 TargetGroup에 적합한 Stage를 candidate에서 찾아 Target의 CurrentStage로 설정
+            적합한 Stage가 두 개 이상인 경우 구현 내용에 따라 TargetGroup을 복사하거나, 분할해서 CurrentStage 설정
+            </summary>
+            <param name="target"></param>
+            <param name="candidate"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mozart.RuleFlow.ITransition.Stage">
+            <summary>
+            다음/하위 Stage
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.ITransition.Condition">
+            <summary>
+            다음/하위 Stage가 선택되기 위한 조건
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowManager.AddFlow(Mozart.RuleFlow.IFlow)">
+            <summary>
+            Flow 등록
+            </summary>
+            <param name="flow"></param>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowManager.GetFlow(System.String)">
+            <summary>
+            Flow 찾기
+            </summary>
+            <param name="flowKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IFlowManager.RemoveFlow(System.String)">
+            <summary>
+            Flow 제거
+            </summary>
+            <param name="flowName"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlowManager.Flows">
+            <summary>
+            저장된 Flow들
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IFlowManager.TopFlows">
+            <summary>
+            저장된 Flow 중 최상위 Flow 중 하나의 Flow
+            </summary>
+        </member>
+        <member name="T:Mozart.RuleFlow.IInputGroup">
+            <summary>
+            Ruleflow 엔진에서 flow 실행시 Input 으로 사용될 데이터그룹에 대한 Interface 입니다.
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IInputGroup.AddInput(Mozart.RuleFlow.IInput)">
+            <summary>
+            InputList 에 데이터를 추가합니다. 
+            </summary>
+            <param name="input">InputList 에 추가할 Input Data 객체입니다.</param>
+        </member>
+        <member name="P:Mozart.RuleFlow.IInputGroup.InputList">
+            <summary>
+            Input 데이터 리스트입니다. 
+            </summary>
+        </member>
+        <member name="T:Mozart.RuleFlow.IEngine">
+            <summary>
+            Ruleflow Engine 에 대한 Interface 입니다.
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IEngine.CreateFlowBuilder">
+            <summary>
+            빈 FlowBuilder 를 생성합니다. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IEngine.CreateFlowBuilder(Mozart.RuleFlow.IFlow)">
+            <summary>
+            입력된 flow 를 편집하기위한 FlowBuilder 를 생성합니다.
+            </summary>
+            <param name="flow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IEngine.ExecuteFlow(Mozart.RuleFlow.IFlow,System.Collections.Generic.IList{Mozart.RuleFlow.IStageTargetGroup})">
+            <summary>
+            대상 flow 를 실행합니다. Input은 targetList 를 사용합니다. 
+            </summary>
+            <param name="flow">실행 대상 flow 객체입니다.</param>
+            <param name="targetList">대상 flow 의 input 리스트입니다.</param>
+            <returns>실행 결과 target 리스트입니다.</returns>
+        </member>
+        <member name="P:Mozart.RuleFlow.IEngine.Rules">
+            <summary>
+            Rule Manager 객체입니다. 엔진 실행을 위한 모든 Rule 을 관리합니다. 
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IEngine.Flows">
+            <summary>
+            Flow Manager 객체입니다. 엔진 실행에 포함되는 모든 Flow 를 관리합니다. 
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IEngine.Executer">
+            <summary>
+            Flow Executer 객체입니다. 
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IEngine.TargetGroupComparer">
+            <summary>
+            Input Target Group에 대한 실행우선순위를 비교하는 Comparer 입니다.
+            </summary>
+        </member>
+        <member name="P:Mozart.RuleFlow.IEngine.TargetComparer">
+            <summary>
+            Input Target 대한 실행우선순위를 비교하는 Comparer 입니다.
+            </summary>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageTargetGroupMerger.Merge(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{Mozart.RuleFlow.IStageTargetGroup})">
+            <summary>
+            동일한 특성을 갖는 StageTargetGroup끼리 Merge
+            Merge 후 Current Stage 지정 필요
+            </summary>
+            <param name="flowName">Merger를 호출한 Flow의 이름</param>
+            <param name="stageName">Merger를 호출한 Stage의 이름</param>
+            <param name="stateName">Merger를 호출한 Stage의 State</param>
+            <param name="targets">전체 StageTargetGroup의 리스트</param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.RuleFlow.IStageTargetGroupMerger.Split(System.String,System.String,System.String,System.Collections.Generic.IEnumerable{Mozart.RuleFlow.IStageTargetGroup})">
+            <summary>
+            StageTargetGroup을 Split
+            Split 후 Current Stage 지정 필요
+            </summary>
+            <param name="flowName">Merger를 호출한 Flow의 이름</param>
+            <param name="stageName">Merger를 호출한 Stage의 이름</param>
+            <param name="stateName">Merger를 호출한 Stage의 State</param>
+            <param name="targets">전체 StageTargetGroup의 리스트</param>
+            <returns></returns>
+        </member>
+        <member name="P:Mozart.RuleFlow.IStageTarget.Input">
+            <summary>
+            Target의 Original 투입 정보
+            </summary>
+        </member>
+    </members>
+</doc>

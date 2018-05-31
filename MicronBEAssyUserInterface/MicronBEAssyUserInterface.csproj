@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4377BC8F-536E-4AA2-ACC2-7F8486AF55B6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MicronBEAssyUserInterface</RootNamespace>
+    <AssemblyName>MicronBEAssyUserInterface</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assy.Schema">
+      <HintPath>..\MicronBEAssy\Generated\Assy.Schema.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v14.1.Core, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.Charts.v14.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.Data.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Office.v14.1.Core, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.Office.v14.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v14.1.Core, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.PivotGrid.v14.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v14.1.Core, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.Printing.v14.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v14.1.Core, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.RichEdit.v14.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Spreadsheet.v14.1.Core, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.Spreadsheet.v14.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.Utils.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.Xpo.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraBars.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraCharts.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v14.1.UI, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraCharts.v14.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v14.1.Wizard, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraCharts.v14.1.Wizard.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraEditors.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraGrid.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraLayout.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraNavBar.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraPivotGrid.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraPrinting.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraSpreadsheet.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraSpreadsheet.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraTreeList.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraWizard.v14.1, Version=14.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\DevExpress.XtraWizard.v14.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Mozart.Common, Version=2017.4.112.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\Mozart.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Mozart.Core, Version=2017.4.112.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\Mozart.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Mozart.Data.Entity, Version=2017.4.112.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\Mozart.Data.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="Mozart.DataActions, Version=2017.4.112.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\Mozart.DataActions.dll</HintPath>
+    </Reference>
+    <Reference Include="Mozart.Studio, Version=2017.4.112.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\Mozart.Studio.dll</HintPath>
+    </Reference>
+    <Reference Include="Mozart.Studio.TaskCommon, Version=2017.4.112.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\Mozart.Studio.TaskCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="Mozart.Studio.TaskModel, Version=2017.4.112.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\Mozart.Studio.TaskModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Mozart.Studio.TaskModel.UserLibrary, Version=2017.4.112.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\Mozart.Studio.TaskModel.UserLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Mozart.Studio.UIComponents, Version=2017.4.112.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\Mozart.Studio.UIComponents.dll</HintPath>
+    </Reference>
+    <Reference Include="Mozart.Task.Model, Version=2017.4.112.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\VMS\Mozart\Bin\Mozart.Task.Model.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseProductStepbasedPegging\RowInfo.cs" />
+    <Compile Include="BaseProductStepbasedPegging\StdStepPegInfo.cs" />
+    <Compile Include="ProductAreaCompSeqbasedQuantity\ProductAreaCompSeqbasedQuantityView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductAreaCompSeqbasedQuantity\ProductAreaCompSeqbasedQuantityView.Designer.cs">
+      <DependentUpon>ProductAreaCompSeqbasedQuantityView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\UIStepCategory.cs" />
+    <Compile Include="Class\UIProcess.cs" />
+    <Compile Include="Class\UIProductDetail.cs" />
+    <Compile Include="Class\UIStep.cs" />
+    <Compile Include="DataHelper.cs" />
+    <Compile Include="BaseProductStepbasedPegging\Constants.cs" />
+    <Compile Include="BaseProductStepbasedPegging\BaseProductStepbasedPeggingView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BaseProductStepbasedPegging\BaseProductStepbasedPeggingView.Designer.cs">
+      <DependentUpon>BaseProductStepbasedPeggingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Template\TemplateView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Template\TemplateView.Designer.cs">
+      <DependentUpon>TemplateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIHelper.cs" />
+    <Compile Include="WipTrendAnalysis\Constants.cs" />
+    <Compile Include="WipTrendAnalysis\MainView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WipTrendAnalysis\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WipTrendAnalysis\WipTrendAnalysisView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WipTrendAnalysis\WipTrendAnalysisView.Designer.cs">
+      <DependentUpon>WipTrendAnalysisView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Analysis\StepTargetView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Analysis\StepTargetView.designer.cs">
+      <DependentUpon>StepTargetView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CycleTime\CycleTimeAnalysisView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CycleTime\CycleTimeAnalysisView.Designer.cs">
+      <DependentUpon>CycleTimeAnalysisView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CycleTime\CycleTimeRawData.cs" />
+    <Compile Include="Data\AnalysisView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Data\AnalysisView.Designer.cs">
+      <DependentUpon>AnalysisView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WipTrendAnalysis\SubView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WipTrendAnalysis\SubView.Designer.cs">
+      <DependentUpon>SubView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductRoute\Bar.cs" />
+    <Compile Include="Data\MainView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Data\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\UIBinSplitInfo.cs" />
+    <Compile Include="Class\UIProduct.cs" />
+    <Compile Include="ProductRoute\RouteMainView.xaml.cs">
+      <DependentUpon>RouteMainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProductRoute\ProductRouteView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProductRoute\ProductRouteView.Designer.cs">
+      <DependentUpon>ProductRouteView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gantt\Constants.cs" />
+    <Compile Include="Gantt\EqpGanttView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gantt\EqpGanttView.designer.cs">
+      <DependentUpon>EqpGanttView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gantt\EqpPlanItem.cs" />
+    <Compile Include="Gantt\GanttBar.cs" />
+    <Compile Include="Gantt\GanttInfo.cs" />
+    <Compile Include="Gantt\GanttMaster.cs" />
+    <Compile Include="Gantt\MouseSelectionType.cs" />
+    <Compile Include="MicronBEAssyUserInterface.cs" />
+    <Compile Include="Data\DataView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Data\DataView.Designer.cs">
+      <DependentUpon>DataView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProdGantt\Constants.cs" />
+    <Compile Include="ProdGantt\EqpPlanItem.cs" />
+    <Compile Include="ProdGantt\GanttBar.cs" />
+    <Compile Include="ProdGantt\GanttInfo.cs" />
+    <Compile Include="ProdGantt\GanttMaster.cs" />
+    <Compile Include="ProdGantt\MouseSelectionType.cs" />
+    <Compile Include="ProdGantt\ProdGanttView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProdGantt\ProdGanttView.designer.cs">
+      <DependentUpon>ProdGanttView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ProductRoute\ToTextBlock.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MicronBEAssyUI.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ProductAreaCompSeqbasedQuantity\ProductAreaCompSeqbasedQuantityView.resx">
+      <DependentUpon>ProductAreaCompSeqbasedQuantityView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseProductStepbasedPegging\BaseProductStepbasedPeggingView.resx">
+      <DependentUpon>BaseProductStepbasedPeggingView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Template\TemplateView.resx">
+      <DependentUpon>TemplateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WipTrendAnalysis\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WipTrendAnalysis\WipTrendAnalysisView.resx">
+      <DependentUpon>WipTrendAnalysisView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Analysis\StepTargetView.resx">
+      <DependentUpon>StepTargetView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CycleTime\CycleTimeAnalysisView.resx">
+      <DependentUpon>CycleTimeAnalysisView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\AnalysisView.resx">
+      <DependentUpon>AnalysisView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WipTrendAnalysis\SubView.resx">
+      <DependentUpon>SubView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductRoute\ProductRouteView.resx">
+      <DependentUpon>ProductRouteView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gantt\EqpGanttView.resx">
+      <DependentUpon>EqpGanttView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Data\DataView.resx">
+      <DependentUpon>DataView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProdGantt\ProdGanttView.resx">
+      <DependentUpon>ProdGanttView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="ProductRoute\RouteMainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)$(ProjectName).*" "C:\Program Files (x86)\VMS\Mozart\Bin\" /D /C /V /Y /R
+xcopy "$(TargetDir)MicronBEAssyUI.config*" "C:\Program Files (x86)\VMS\Mozart\Bin\" /D /C /V /Y /R</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,373 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Mozart.SeePlan.SemiBE</name>
+    </assembly>
+    <members>
+        <member name="T:Mozart.SeePlan.SemiBE.Pegging.PlanWip">
+            <summary>
+            Pegging 대상 Wip 정보 클래스
+            </summary>
+        </member>
+        <member name="T:Mozart.SeePlan.SemiBE.DataModel.Process">
+            <summary>
+            제조공정 흐름(Flow)에 대한 클래스
+            </summary>
+        </member>
+        <member name="T:Mozart.SeePlan.SemiBE.DataModel.PlanInfo">
+            <summary>
+            공정별 장비 로딩 정보
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.Eqp.DispatchingRule">
+            <summary>
+            장비가 사용할 DispatchingRule
+            </summary>
+        </member>
+        <member name="T:Mozart.SeePlan.SemiBE.DataModel.BEStep">
+            <summary>
+            공정(Step) 데이터 클래스
+            </summary>
+        </member>
+        <member name="T:Mozart.SeePlan.SemiBE.Pegging.BEMoMaster">
+            <summary>
+            제품별 Demand 집합
+            </summary>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.PrepareWipControl.PrepareWip(Mozart.SeePlan.Pegging.PegPart)">
+            <summary>
+            Pegging 을 위한 Wip 정보를 생성하고 초기화를 수행합니다.
+            </summary>
+            <param name="pegPart">입력 PegPart 객체입니다.</param>
+            <returns>수정된 pegPart 객체입니다. 본 함수에서 결과값은 일반적으로 수정대상이 되지 않습니다.</returns>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.PrepareTargetControl.PrepareTarget(Mozart.SeePlan.Pegging.PegPart)">
+            <summary>
+            Demand 에 대한 정보를 기반으로 PegTarget 정보를 생성합니다. 
+            </summary>
+            <param name="pegPart">입력 PegPart 객체입니다.</param>
+            <returns>생성된 PegPart 정보를 포함하는 MergedPegPart 객체입니다.
+            입력 parameter 의 수정값입니다. </returns>
+            <remarks>
+            일반적으로 PeggerModel 의 Preflow 에서 호출되도록 Rule 을 배치하며
+            이때 PegPart는 MergedPegPart 로 Dummy 형태로 제공됩니다. 최종 가공된 
+            Out 기준 Demand 에 Mapping 되는 제품(Product)별로 PegPart 를 생성하고
+            생성된 PegPart 를 입력된 MergedPegPart 에 추가하는 작업을 수행합니다.
+            </remarks>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.ManipulateDemandControl.ManipulateDemand(Mozart.SeePlan.Pegging.PegPart)">
+            <summary>
+            입력된 Demand 를 Pegging 의 Input Demand 로 변환하는 로직을 구현합니다.
+            </summary>
+            <param name="pegPart">입력 PegPart 객체입니다.</param>
+            <returns>결과 처리된 PegPart 객체입니다.</returns>
+            <remarks>
+            일반적으로 PeggerModel 의 Preflow 에서 호출되도록 Rule 을 배치하며
+            이때 PegPart는 MergedPegPart 로 Dummy 형태로 제공됩니다. 사용자 조직의
+            입력 Demand 정보를 가공하여 가공된 정보를 별도(InputMart)로 저장하는 작업을 수행합니다.
+            </remarks>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BuildInPlanControl.BuildInPlan(Mozart.SeePlan.Pegging.PegPart)">
+            <summary>
+            PegPart 의 잔여 Target 을 투입 배치를 구성하는 기준으로 재그룹핑하고 사용자 조직의 투입 룰을 고려하여 로직을 개발합니다.
+            </summary>
+            <param name="pegPart">입력 PegPart 객체입니다.
+            </param>
+            <returns>변경된 PegPart 정보입니다.</returns>
+            <remarks>
+            일반적으로 PeggerModel 의 Postflow 에서 호출되도록 Rule 을 배치하며
+            이때 PegPart는 MergedPegPart 로 제공됩니다. 투입계획 수립을 위해 
+            MergedPegPart.Items 의 개별 PegPart 에 대한 잔여 Target 을 가공하여 로직을 구현합니다.
+            </remarks>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.CheckUseRule(Mozart.SeePlan.Pegging.PegPart,System.Boolean)">
+            <summary>
+            	<para>[FEAction] Rules/BIN_BUFFER</para>
+            	<para>BinBuffer Rule을 사용여부를 반환하는 로직을 구현합니다.</para>
+            </summary>
+            <param name="pegPart">대상 PegPart 개체입니다.</param>
+            <param name="isRun">
+            	<para>현재 공정의 Pegging Phase가 Run 상태인지 여부입니다.</para>
+            </param>
+            <returns>BinBuffer Rule을 사용할 경우 true, 사용하지 않을 경우 false 입니다.</returns>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.GetWips(Mozart.SeePlan.Pegging.PegPart,System.Boolean)">
+            <summary>
+            	<para>[FEAction] Rules/BIN_BUFFER</para>
+            	<para>대상 PegPart에 대해 Pegging 대상 재공정보를 반환하는 로직을 구현합니다.</para>
+            </summary>
+            <param name="pegPart">대상 PegPart 개체입니다.</param>
+            <param name="isRun">
+            	<para>현재 공정의 Pegging Phase가 Run 상태인지 여부입니다.</para>
+            </param>
+            <returns>Pegging 대상 재공정보입니다.</returns>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.SortWip(Mozart.SeePlan.Pegging.IMaterial,Mozart.SeePlan.Pegging.IMaterial)">
+            <summary>
+            GetWips 를 통해 선택된 재공에 대해 Pegging 우선순위가 높은 순서로 재공을 소팅합니다. 
+            구현하지 않으면 재공의 경우 Random 하게 Pegging 이 됩니다.
+            </summary>
+            <param name="x">비교대상 재공(wip) 정보입니다.</param>
+            <param name="y">비교대상 재공(wip) 정보입니다.</param>
+            <returns>x 가 y 보다 우선인 경우 양수, 동일한 우선순위의 경우 0, 
+            x가 y보다 우선순위가 낮은 경우 음수입니다. </returns>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.CanPegMore(Mozart.SeePlan.Pegging.PegTarget,Mozart.SeePlan.Pegging.IMaterial,System.Boolean)">
+            <summary>
+            	<para>[FEAction] Rules/BIN_BUFFER</para>
+            	<para>대상 PegTarget이 재공에 Pegging 가능한지를 판별하는 로직을 구현합니다.</para>
+            </summary>
+            <param name="target">
+            	<para>대상 PegTarget 개체입니다.</para>
+            </param>
+            <param name="m">Pegging 대상 재공 개체입니다.</param>
+            <param name="isRun">현재 공정의 Pegging Phase가 Run 상태인지 여부입니다.</param>
+            <returns>Pegging이 가능한 경우 true, 그 외의 경우 false입니다.</returns>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.AvailPegQty(Mozart.SeePlan.Pegging.PegTarget,Mozart.SeePlan.Pegging.IMaterial,System.Boolean)">
+            <summary>
+            	<para>[FEAction] Rules/BIN_BUFFER</para>
+            	<para>대상 PegTarget의 Pegging 가능 수량을 계산하는 로직을 구현합니다.</para>
+            </summary>
+            <param name="target">대상 PegTarget 개체입니다.</param>
+            <param name="m">Pegging 대상 재공 개체입나다.</param>
+            <param name="isRun">현재 공정의 Pegging Phase가 Run 상태가 Run 상태인지 여부입니다.</param>
+            <returns>대상 PegTarget의 Pegging 가능 수량입니다. Pegging 가능 수량이 0 이하인 경우 Pegging되지 않습니다.</returns>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.UpdatePegInfo(Mozart.SeePlan.Pegging.PegTarget,Mozart.SeePlan.Pegging.IMaterial,System.Double)">
+            <summary>
+            	<para>[FEAction] Rules/BIN_BUFFER</para>
+            	<para>대상 PegTarget에 Pegging 결과를 업데이트하는 로직을 구현합니다.</para>
+            </summary>
+            <param name="target">대상 PegTarget 개체입니다.</param>
+            <param name="m">Pegging된 재공 개체입니다.</param>
+            <param name="qty">Pegging된 수량입니다.</param>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.WritePeg(Mozart.SeePlan.Pegging.PegTarget,Mozart.SeePlan.Pegging.IMaterial,System.Double)">
+            <summary>
+            	<para>[FEAction] Rules/BIN_BUFFER</para>
+            	<para>Pegging 결과를 기록하는 로직을 구현합니다.</para>
+            </summary>
+            <param name="target">
+            	<para>대상 PegTarget 개체입니다.</para>
+            </param>
+            <param name="m">Pegging된 재공 개체입니다.</param>
+            <param name="qty">Pegging된 수량입니다.</param>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.IsRemoveEmptyTarget(Mozart.SeePlan.Pegging.PegPart)">
+            <summary>
+            	<para>[FEAction] Rules/BIN_BUFFER</para>
+            	<para>Pegging 후 PegTarget 수량을 모두 차감해서 0인 경우 PegPart에서 해당 PegTarget을 제거할 것인지 여부를 결정하는 로직을 구현합니다.</para>
+            </summary>
+            <param name="pegpart">대상 PegPart입니다.</param>
+            <returns>수량이 0인 PegTarget을 PegPart에서 제거할 경우 true, 그 외의 경우 false입니다.</returns>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.GetBinRate(Mozart.SeePlan.Pegging.PegPart,System.Boolean)">
+            <summary>
+            	<para>[FEAction] Rules/BIN_BUFFER</para>
+            	<para>Binning 정보에 의해 Target이 전개될 경우 
+            	Bin 분기율 만큼 Target 수량이 증가함에 따라 
+            	Target이 증가되는 분기율을 반환하는 함수를 구현합니다.</para>
+            </summary>
+            <param name="pegPart">대상 PegPart입니다.</param>
+            <returns>Target의 Bin 분기율 값을 반환합니다. 반환값이 1보다 크거나 0보다 작은 경우 반영되지 않습니다.</returns>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.RoundResult(System.Double)">
+            <summary>
+            	<para>[FEAction] Rules/BIN_BUFFER</para>
+            	<para>Bin 분기율이 반영된 PegTarget 수량의 소수점을 처리하는 로직을 구현합니다.</para>
+            </summary>
+            <param name="qty">Bin 분기율 반영된 PegTarget 수량입니다.</param>
+            <remarks>Bin 분기율이 반영된 Demand 수량을 특정 자리수에서 반올림, 버림, 올림 등의 가공하고자 할 때 Action을 구현합니다.</remarks>
+            <returns>
+            	<para>소수점 처리가된 PegTarget 수량입니다.</para>
+            </returns>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.GetLowBinInfoList(Mozart.SeePlan.Pegging.PegPart,System.Boolean)">
+            <summary>
+            	<para>[FEAction] Rules/BIN_BUFFER</para>
+            	<para>Bin Buffer를 생성하기 위한 BinInfo 정보를 반환합니다.</para>
+            </summary>
+            <param name="pegPart">대상 PegPart입니다.</param>
+            <param name="isRun">현재 공정의 Pegging Phase가 Run 상태가 Run 상태인지 여부입니다.</param>
+            <returns>
+            	<para>BinBuffer 생성이 필요한 Bin 정보입니다.</para>
+            </returns>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Pegging.BinBufferControl.CreateBinBuffer(Mozart.SeePlan.Pegging.PegPart,Mozart.SeePlan.Pegging.PegTarget,Mozart.SeePlan.SemiBE.DataModel.BinInfo,System.Boolean)">
+            <summary>
+            	<para>[FEAction] Rules/BIN_BUFFER</para>
+            	<para>Bin 정보에 의해 BinBuffer 물량을 생성하는 로직을 구현합니다.</para>
+            </summary>
+            <param name="pegPart">대상 PegPart입니다.</param>
+            <param name="target">대상 PegTarget입니다.</param>
+            <param name="isRun">현재 공정의 Pegging Phase가 Run 상태가 Run 상태인지 여부입니다.</param>
+            <param name="binInfo">BinBuffer 물량 생성이 필요한 Bin분기 정보입니다.</param>
+            <returns>
+            	<para></para>
+            </returns>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IEqpArrange.Product">
+            <summary>
+            대상 작업물의 제품정보객체
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IEqpArrange.Step">
+            <summary>
+            대상 작업물의 공정(Process 정보 포함) 객체
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IEqpArrange.RecipeID">
+            <summary>
+            대상 작업물의 작업 조건정보
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IEqpArrange.Resource">
+            <summary>
+            대상 작업물의 로딩 가능 장비 정보
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.LotID">
+            <summary>
+            Lot ID
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.UnitQty">
+            <summary>
+            Lot을 구성하는 Unit 수량
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.Product">
+            <summary>
+            Product 정보
+            </summary>  
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.Process">
+            <summary>
+            초기 설정된 Process 정보
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.InitialStep">
+            <summary>
+            Current Step
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.InitialEqp">
+            <summary>
+            장비(예약, 로딩, 작업중, Unlod 상태인 경우만 가능)
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.CurrentState">
+            <summary>
+            재공 상태
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.WipProductID">
+            <summary>
+            초기 데이터베이스 상의 product id 
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.WipProcessID">
+            <summary>
+            초기 데이터베이스 상의 process id
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.WipStepID">
+            <summary>
+            초기 데이터베이스 상의 step id 
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.WipEqpID">
+            <summary>
+            초기 데이터베이스 상의 eqp id
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.WipState">
+            <summary>
+            초기 데이터베이스 상의 재공 상태
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.WipStateTime">
+            <summary>
+            상태 변경시각
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.LastTrackInTime">
+            <summary>
+            마지막 track in time
+            현재 상태가 port loading, processing 상태인 경우만 값 설정
+            </summary> 
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.LastProcessStartTime">
+            <summary>
+            마지막 process start time
+            현재 상태가 processing 상태인 경우만 값 설정
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IWipInfo.LastTrackOutTime">
+            <summary>
+            이전 공정의 TrackOut 시각
+            </summary>
+        </member>
+        <member name="T:Mozart.SeePlan.SemiBE.Simulation.BELotBatch">
+            <summary>
+            Simulation 장비에 대한 데이터 클래스
+            </summary>
+        </member>
+        <member name="T:Mozart.SeePlan.SemiBE.Pegging.BEPegTarget">
+            <summary>
+            Pegging 대상이 되는 단위 Demand(Target) 클래스
+            </summary>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Simulation.MonitorControl.WriteDispatchWipLog(Mozart.SeePlan.Simulation.ILot,Mozart.SeePlan.DataModel.WeightPreset)">
+            <summary>
+            Lot별 Dispatch 로그 문자열을 작성합니다. 
+            </summary>
+            <param name="lot"></param>
+            <param name="wp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Mozart.SeePlan.SemiBE.Simulation.MonitorControl.GetSelectedWipLog(Mozart.Simulation.Engine.ISimEntity[])">
+            <summary>
+            Dispatching 시점에 선택된 Lot들에 대한 Log 문자열을 작성합니다. 
+            </summary>
+            <param name="sel"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IBatchSpec.MaxLot">
+            <summary>
+            Batch 구성이 필요한 장비에서 Full Batch 를 구성하는 Lot 수량
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IBatchSpec.MinLot">
+            <summary>
+            Batch 구성이 필요한 장비에서 Batch 를 구성할 수 있는 최소한의 Lot 수량
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IBatchSpec.MaxWafer">
+            <summary>
+            Batch 구성이 필요한 장비에서 Full Batch 를 구성하는 Wafer 수량
+            </summary>
+        </member>
+        <member name="P:Mozart.SeePlan.SemiBE.DataModel.IBatchSpec.MinWafer">
+            <summary>
+            Batch 구성이 필요한 장비에서 Batch 를 구성할 수 있는 최소한의 Wafer 수량
+            </summary>
+        </member>
+        <member name="T:Mozart.SeePlan.SemiBE.Pegging.BEPegPart">
+            <summary>
+            Pegging 을 위한 Demand 집합 클래스
+            </summary>
+        </member>
+        <member name="T:Mozart.SeePlan.SemiBE.Simulation.BELot">
+            <summary>
+            Semicon FAB 용 Simulation 작업물(Entity) 클래스
+            </summary>
+        </member>
+        <member name="T:Mozart.SeePlan.SemiBE.Pegging.BEMoPlan">
+            <summary>
+            제품별 단위기간(일,주)의 Demand 데이터클래스
+            </summary>
+        </member>
+    </members>
+</doc>
